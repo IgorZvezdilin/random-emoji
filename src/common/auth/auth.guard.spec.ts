@@ -1,7 +1,7 @@
 import { ExecutionContext } from '@nestjs/common';
 import { AuthGuard } from './auth.guard';
 import { createMock } from '@golevelup/ts-jest';
-import { LoggerService } from '../../logger.service';
+import { LoggerService } from 'src/logger.service';
 
 describe('AuthGuard', () => {
   const authGard = new AuthGuard(new LoggerService());
