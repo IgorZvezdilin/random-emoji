@@ -10,13 +10,11 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
+    container: ghcr.io/railwayapp/cli:latest
+    env:
+      SVC_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
       - uses: ./.github/actions/build
-      - name: Install Railway CLI
-        run: pnpm add --global @railway/cli
       - name: Deploy to Railway
-        run: |
-          railway up --service="random-emoji" --yes || test $? -eq 1
-        env: 
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up --service=${{ env.SVC_ID }}
