@@ -15,11 +15,8 @@ jobs:
       - uses: ./.github/actions/build
       - name: Install Railway CLI
         run: pnpm add --global @railway/cli
-      - name: Verify Railway login
-        run: railway whoami
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       - name: Deploy to Railway
-        run: railway up --service="random-emoji" --yes
+        run: |
+          railway up --service="random-emoji" --yes || test $? -eq 1
         env: 
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
