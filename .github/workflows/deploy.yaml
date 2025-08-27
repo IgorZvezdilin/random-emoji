@@ -15,6 +15,6 @@ jobs:
       SVC_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
       RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
     steps:
-      - uses: ./.github/actions/build
+      - uses: actions/checkout@v3
       - name: Deploy to Railway
         run: railway up --service=${{ env.SVC_ID }}
