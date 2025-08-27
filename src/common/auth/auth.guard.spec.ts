@@ -1,9 +1,10 @@
 import { ExecutionContext } from '@nestjs/common';
 import { AuthGuard } from './auth.guard';
 import { createMock } from '@golevelup/ts-jest';
+import { LoggerService } from '../../logger.service';
 
 describe('AuthGuard', () => {
-  const authGard = new AuthGuard();
+  const authGard = new AuthGuard(new LoggerService());
   it('should be defined', () => {
     expect(authGard).toBeDefined();
   });
