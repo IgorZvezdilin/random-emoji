@@ -9,9 +9,10 @@ import { AuthGuard } from './common/auth/auth.guard';
 import { BrowserInterceptor } from './common/browser/browser.interceptor';
 import { CustomFilterFilter } from './common/custom-filter/custom-filter.filter';
 import { TransformResponseInterceptor } from './common/transform-response/transform-response.interceptor';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [EmojiModule],
+  imports: [ConfigModule.forRoot(), EmojiModule],
   controllers: [AppController],
   providers: [
     AppService,
