@@ -4,11 +4,14 @@ import { Injectable } from '@nestjs/common';
 export class EmojiService {
   getRandomEmoji(index?: number) {
     const emojis = this.getEmojis();
-    const emojisIndex = index || Math.floor(Math.random() * emojis.length);
+    const emojisIndex =
+      typeof index !== 'undefined'
+        ? index
+        : Math.floor(Math.random() * emojis.length);
     return emojis[emojisIndex];
   }
 
-  private getEmojis(): string[] {
+  getEmojis(): string[] {
     return ['🐙', '🌵', '🦄', '🍕', '🎸', '🛸', '🐢', '🌈', '⚡', '🎯'];
   }
 }
